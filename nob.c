@@ -30,6 +30,8 @@ int main(int argc, char **argv)
 {
 	NOB_GO_REBUILD_URSELF(argc, argv);
 
+	const char *program = nob_shift_args(&argc, &argv);
+
 	Nob_Cmd cmd = {0};
 	if (!nob_mkdir_if_not_exists("./build/")) return 1;
 	if (!rebuild_stb_if_needed(&cmd, "-DSTB_IMAGE_IMPLEMENTATION", "stb_image.h", "./build/stb_image.o")) return 1;
@@ -53,6 +55,7 @@ int main(int argc, char **argv)
 
 	cmd.count = 0;
 	nob_cmd_append(&cmd, main_output);
+	nob_da_append_many(&cmd, argv, argc);
 	if (!nob_cmd_run_sync(cmd)) return 1;
 	return 0;
 }

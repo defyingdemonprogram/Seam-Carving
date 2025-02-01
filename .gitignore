@@ -1,7 +1,11 @@
 # Images
 *.png
+*.jpg
 
 # executable
 main
 nob
 nob.old
+
+# build
+build

@@ -4,7 +4,7 @@
 1. Build and run the program
 ```bash
 cc -o nob nob.c #one time
-./nob
+./nob images/tower.jpg output.jpg
 ```
 
 

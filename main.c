@@ -5,9 +5,11 @@
 #include <float.h>
 #include <math.h>
 
-#include "nob.h"
 #include "stb_image.h"
 #include "stb_image_write.h"
+
+#define NOB_IMPLEMENTATION
+#include "nob.h"
 
 typedef struct {
     uint32_t *pixels;
@@ -184,9 +186,30 @@ void grad_to_dp(Mat grad, Mat dp)
     }
 }
 
-int main()
+void usage(const char *program)
 {
-    const char *file_path = "data/people.jpg";
+    fprintf(stderr, "Usage: %s <input> <output>\n", program);
+}
+
+int main(int argc, char **argv)
+{
+    const char *program = nob_shift_args(&argc, &argv);
+
+    if (argc <= 0)
+    {
+        usage(program);
+        fprintf(stderr, "ERROR: no input file is provided\n");
+        return 1;
+    }
+    const char *file_path = nob_shift_args(&argc, &argv);
+    
+    if (argc <= 0)
+    {
+        usage(program);
+        fprintf(stderr, "ERROR: no output file is provided\n");
+        return 1;
+    }
+    const char *out_file_path = nob_shift_args(&argc, &argv);
 
     int width, height;
     uint32_t *pixels = (uint32_t *)stbi_load(file_path, &width, &height, NULL, 4);
@@ -256,11 +279,9 @@ int main()
         dp.width -= 1;
     }
 
-    const char *out_file_path = "seam.png";
-
     if (!stbi_write_png(out_file_path, img.width, img.height, 4, img.pixels, img.stride * sizeof(uint32_t)))
     {
-        fprintf(stderr, "ERROR: could not save file %s", out_file_path);
+        fprintf(stderr, "ERROR: could not save file %s\n", out_file_path);
         return 1;
     }
 
