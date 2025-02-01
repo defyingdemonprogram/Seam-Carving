@@ -6,10 +6,7 @@
 #include <math.h>
 
 #include "nob.h"
-#define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
 typedef struct {
@@ -210,8 +207,8 @@ int main()
     Mat grad = mat_alloc(width, height);
     Mat dp = mat_alloc(width, height);
 
-    int seam = width*2/3;
-    for (int i = 0; i < seam; ++i)
+    int seams_to_remove = img.width*2/3;
+    for (int i = 0; i < seams_to_remove; ++i)
     {
         printf("Removing seam %d\n", i);
         luminance(img, lum);
