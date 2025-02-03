@@ -63,6 +63,49 @@ $$
 This gives the angle of the edge at each pixel.
 
 
+### FAQ
+
+1. **Why do we use `static` in functions and variables in C?**
+- **Static Variables (Inside Functions):**  
+   A static variable inside a function retains its value between function calls, unlike regular local variables that are reinitialized each time the function is called. This is useful for counting or preserving state across calls.
+   
+   Example:
+   ```c
+   void counter() {
+         static int count = 0;  // Only initialized once
+         count++;
+         printf("%d\n", count);
+   }
+   ```
+
+   - **Static Variables (Global Scope):**  
+   When `static` is used for a global variable or function, it limits the visibility of the variable or function to the file where it's declared, preventing external files from accessing it.
+   
+   Example:
+   ```c
+   static int count = 0;  // Only accessible within this file
+   ```
+
+2. **What is Little Endian and Big Endian?**
+
+   **Endianness** refers to the order in which bytes are stored for multibyte data types like integers:
+   - **Little Endian:** The least significant byte (LSB) is stored first, at the smallest memory address. Common in x86 architecture.
+   - Example: `0x12345678` is stored as `78 56 34 12`.
+   
+   - **Big Endian:** The most significant byte (MSB) is stored first, at the smallest memory address. Common in some older architectures.
+   - Example: `0x12345678` is stored as `12 34 56 78`.
+
+3. **What is `0xFFFFFFFF` in C?**
+
+   `0xFFFFFFFF` is a **hexadecimal literal** that represents the number `4294967295` in decimal for a 32-bit unsigned integer. It consists of 32 `1`s in binary:
+   ```
+   11111111 11111111 11111111 11111111
+   ```
+
+   - For an **unsigned integer**, it is the maximum value of a 32-bit integer.
+   - For a **signed integer**, it represents `-1` in two's complement representation.
+
+
 ### References:
 - [Seam Carving - Wikipedia](https://en.m.wikipedia.org/wiki/Seam_carving)
 - [Seam carving for content-aware image resizing - paper](https://dl.acm.org/doi/10.1145/1275808.1276390)
