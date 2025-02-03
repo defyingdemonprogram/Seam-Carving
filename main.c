@@ -261,9 +261,10 @@ int main(int argc, char **argv)
 
         for (int y = img.height - 2; y >= 0; --y)
         {
+            int original_seam = seam;
             for (int dx = -1; dx <= 1; ++dx)
             {
-                int x = seam + dx;
+                int x = original_seam + dx;
                 if (0 <= x && x < img.width && MAT_AT(dp, y, x) < MAT_AT(dp, y, seam))
                 {
                     seam = x;
