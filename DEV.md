@@ -23,6 +23,7 @@ The Sobel operator applies two convolution kernels (one for detecting edges in t
 The two Sobel kernels are:
 
 1. **Horizontal edge detection kernel (Gx)**:
+   
    $$
    G_x = \begin{pmatrix}
    1 & 0 & -1 \\
@@ -30,16 +31,19 @@ The two Sobel kernels are:
    1 & 0 & -1
    \end{pmatrix}
    $$
+   
    This kernel detects edges in the **horizontal direction**, i.e., it highlights vertical edges in the image.
 
-2. **Vertical edge detection kernel (Gy)**:
-   $$
-   G_y = \begin{pmatrix}
-   1 & 2 & 1 \\
-   0 & 0 & 0 \\
-   -1 & -2 & -1
-   \end{pmatrix}
-   $$
+3. **Vertical edge detection kernel (Gy)**:
+   
+  $$
+  G_y = \begin{pmatrix}
+  1 & 2 & 1 \\
+  0 & 0 & 0 \\
+  -1 & -2 & -1
+  \end{pmatrix}
+  $$
+   
    This kernel detects edges in the **vertical direction**, i.e., it highlights horizontal edges in the image.
 
 ### Convolution:
@@ -50,16 +54,20 @@ For each pixel in the image, the resulting gradients $G_x$ and $G_y$ are calcula
 
 ### Gradient Magnitude:
 The gradient magnitude at each pixel is calculated using the following formula:
+
 $$
 \text{Magnitude} = \sqrt{G_x^2 + G_y^2}
 $$
+
 This gives the strength of the edge at each point. Larger values indicate a stronger edge.
 
 ### Direction of the edge:
 The direction of the edge can also be computed by:
+
 $$
 \text{Direction} = \text{atan2}(G_y, G_x)
 $$
+
 This gives the angle of the edge at each pixel.
 
 
