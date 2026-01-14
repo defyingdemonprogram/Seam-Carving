@@ -1,8 +1,4 @@
-Here’s a cleaner, more concise rewrite with improved flow and consistency, while keeping the technical meaning intact:
-
----
-
-## Seam Carving
+# Seam Carving
 
 **Seam carving** is a *content-aware image resizing* technique. Rather than uniformly scaling an image, it changes the image’s dimensions by **removing or inserting paths of pixels that contribute least to the visual content**.
 
